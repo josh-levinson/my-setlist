@@ -1,3 +1,2 @@
 class Joke < ApplicationRecord
-
 end
