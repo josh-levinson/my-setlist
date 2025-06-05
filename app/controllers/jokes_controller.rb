@@ -65,6 +65,6 @@ class JokesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def joke_params
-      params.fetch(:joke, {})
+      params.require(:joke).permit(:name, :description, :content, :rating)
     end
 end

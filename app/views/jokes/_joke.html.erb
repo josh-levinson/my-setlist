@@ -1,2 +1,18 @@
 <div id="<%= dom_id joke %>">
+  <h3><%= joke.name %></h3>
+  
+  <% if joke.description.present? %>
+    <p><strong>Description:</strong> <%= joke.description %></p>
+  <% end %>
+  
+  <% if joke.content.present? %>
+    <div>
+      <strong>Content:</strong>
+      <p><%= simple_format(joke.content) %></p>
+    </div>
+  <% end %>
+  
+  <% if joke.rating.present? %>
+    <p><strong>Rating:</strong> <%= joke.rating %>/10</p>
+  <% end %>
 </div>

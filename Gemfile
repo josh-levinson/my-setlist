@@ -64,3 +64,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "annotate", "~> 2.6"
+
+gem "cssbundling-rails", "~> 1.4"

@@ -2,15 +2,17 @@
 
 <% content_for :title, "Jokes" %>
 
-<h1>Jokes</h1>
+<h3>Jokes</h3>
 
-<div id="jokes">
+<div id="jokes" class="flex flex-col gap-4">
   <% @jokes.each do |joke| %>
-    <%= render joke %>
-    <p>
-      <%= link_to "Show this joke", joke %>
-    </p>
+    <div>
+      <%= render joke %>
+        <p>
+          <%= link_to "Show this joke", joke %>
+        </p>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New joke", new_joke_path %>
+  <%= link_to "New joke", new_joke_path %>
