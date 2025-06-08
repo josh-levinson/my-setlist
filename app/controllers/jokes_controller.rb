@@ -1,5 +1,6 @@
 class JokesController < ApplicationController
   before_action :set_joke, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /jokes or /jokes.json
   def index
