@@ -52,7 +52,7 @@ class JokesController < ApplicationController
     @joke.destroy!
 
     respond_to do |format|
-      format.html { redirect_to jokes_path, status: :see_other, notice: "Joke was successfully destroyed." }
+      format.html { redirect_to jokes_path, status: :see_other, notice: "Joke was successfully deleted." }
       format.json { head :no_content }
     end
   end

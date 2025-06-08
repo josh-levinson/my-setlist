@@ -66,3 +66,5 @@ gem "devise", "~> 4.9"
 gem "annotate", "~> 2.6"
 
 gem "cssbundling-rails", "~> 1.4"
+
+gem "hotwire-livereload", "~> 2.0", group: :development

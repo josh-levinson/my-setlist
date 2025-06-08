@@ -31,6 +31,8 @@ select {
   background-color: white;
   border-radius: 4px;
   min-height: 40px;
+  width: 100%;
+  max-width: 400px;
 }
 
 input[type="text"]:focus,
@@ -50,7 +52,7 @@ button {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 12px 24px;
+  padding: 4px 12px;
   border-radius: 6px;
   font-size: 16px;
   font-weight: 600;
@@ -67,4 +69,63 @@ input[type="submit"]:active,
 button:active {
   background-color: #004085;
   transform: translateY(1px);
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Reusable button-like styling */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  border: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
 }

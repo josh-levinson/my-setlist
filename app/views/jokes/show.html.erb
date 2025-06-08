@@ -1,10 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @joke %>
-
-<div>
-  <%= link_to "Edit this joke", edit_joke_path(@joke) %> |
-  <%= link_to "Back to jokes", jokes_path %>
-
-  <%= button_to "Destroy this joke", @joke, method: :delete %>
+<div id="<%= dom_id @joke %>" class="flex flex-col justify-between"> 
+  <div><strong>Name:</strong> <%= @joke.name %></div>
+  <div><strong>Description:</strong> <%= @joke.description %></div>
+  <div><strong>Content:</strong> <%= @joke.content %></div>
+  <div><strong>Rating:</strong> <%= @joke.rating %></div>
+</div>
+ 
+<div class="flex gap-2 pt-4">
+  <%= link_to "Edit", edit_joke_path(@joke), class: "btn btn-primary" %>
+  <%= link_to "Back", jokes_path, class: "btn btn-secondary" %>
+  <%= link_to "Delete", @joke, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
 </div>

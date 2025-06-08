@@ -1,18 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
 <% content_for :title, "Jokes" %>
 
 <h3>Jokes</h3>
 
-<div id="jokes" class="flex flex-col gap-4">
+<div id="jokes" class="grid grid-cols-4 border-l-2 border-t-2 border-black">
+  <div class="font-bold border-r-2 border-b-2 border-black bg-gray-300 p-2">Name</div>
+  <div class="font-bold border-r-2 border-b-2 border-black bg-gray-300 p-2">Description</div>
+  <div class="font-bold border-r-2 border-b-2 border-black bg-gray-300 p-2">Rating</div>
+  <div class="font-bold border-r-2 border-b-2 border-black bg-gray-300 p-2"></div>
+
   <% @jokes.each do |joke| %>
-    <div>
-      <%= render joke %>
-        <p>
-          <%= link_to "Show this joke", joke %>
-        </p>
-    </div>
+    <div id="<%= dom_id joke %>" class="border-r-2 border-b-2 border-black p-2"><%= link_to joke.name, joke_path(joke) %></div>
+    <div class="border-r-2 border-b-2 border-black p-2"><%= joke.description %></div>
+    <div class="border-r-2 border-b-2 border-black p-2"><%= joke.rating %></div>
+    <div class="border-r-2 border-b-2 border-black p-2"><%= link_to "Edit", edit_joke_path(joke) %></div> 
   <% end %>
+
 </div>
 
   <%= link_to "New joke", new_joke_path %>

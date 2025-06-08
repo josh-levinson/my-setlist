@@ -18,12 +18,12 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <header class="flex justify-between items-center bg-gray-800 text-white px-6 py-4 shadow-lg">
+    <header class="flex justify-between items-center bg-gray-800 rounded-md text-white px-6 py-4 shadow-lg">
       <div class="flex items-center">
         <%= link_to root_path, class: "text-xl font-bold hover:text-gray-300 transition-colors" do %>
           My Setlist
@@ -35,7 +35,7 @@
         <%= link_to "Jokes", jokes_path, class: "hover:text-gray-300 transition-colors font-medium" %>
       </nav>
     </header>
-    <main class="min-h-screen bg-gray-50">
+    <main class="min-h-screen bg-gray-50 py-4 px-8">
       <%= yield %>
     </main>
   </body>
