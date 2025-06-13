@@ -4,7 +4,7 @@ class JokesController < ApplicationController
 
   # GET /jokes or /jokes.json
   def index
-    @jokes = Joke.all
+    @jokes = current_user.jokes
   end
 
   # GET /jokes/1 or /jokes/1.json
@@ -18,11 +18,13 @@ class JokesController < ApplicationController
 
   # GET /jokes/1/edit
   def edit
+    @available_tags = current_user.tags
   end
 
   # POST /jokes or /jokes.json
   def create
-    @joke = Joke.new(joke_params)
+    @joke = current_user.jokes.new(joke_params)
+    create_or_update_new_tag
 
     respond_to do |format|
       if @joke.save
@@ -37,6 +39,8 @@ class JokesController < ApplicationController
 
   # PATCH/PUT /jokes/1 or /jokes/1.json
   def update
+    create_or_update_new_tag
+
     respond_to do |format|
       if @joke.update(joke_params)
         format.html { redirect_to @joke, notice: "Joke was successfully updated." }
@@ -61,11 +65,24 @@ class JokesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_joke
-      @joke = Joke.find(params.expect(:id))
+      @joke = current_user.jokes.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def joke_params
-      params.require(:joke).permit(:name, :description, :content, :rating)
+      params.require(:joke).permit(:name, :description, :content, :rating, tag_ids: [])
+    end
+
+    def create_or_update_new_tag
+      if params[:joke][:new_tag].present? && params[:joke][:new_tag][:name].present?
+        new_tag = current_user.tags.build(
+          name: params[:joke][:new_tag][:name],
+          color: params[:joke][:new_tag][:color] || '#000000'
+        )
+
+        if new_tag.save
+          @joke.tag_ids = (@joke.tag_ids + [new_tag.id]).uniq
+        end
+      end
     end
 end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_08_013313) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_13_014230) do
+  create_table "joke_tags", force: :cascade do |t|
+    t.integer "joke_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["joke_id"], name: "index_joke_tags_on_joke_id"
+    t.index ["tag_id"], name: "index_joke_tags_on_tag_id"
+  end
+
   create_table "jokes", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -18,6 +27,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_08_013313) do
     t.decimal "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_jokes_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,4 +51,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_08_013313) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "joke_tags", "jokes"
+  add_foreign_key "joke_tags", "tags"
+  add_foreign_key "jokes", "users"
+  add_foreign_key "tags", "users"
 end

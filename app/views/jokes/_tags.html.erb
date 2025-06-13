@@ -1,0 +1,45 @@
+<%# Display mode for index/show views %>
+<% if local_assigns[:display_only] %>
+  <div class="flex flex-wrap gap-1 mt-2">
+    <% tags.each do |tag| %>
+      <div class="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium" style="background-color: <%= tag.color %>; color: <%= text_color_for_background(tag.color) %>">
+        <%= tag.name %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <%# Form mode for new/edit views %>
+  <div class="mt-4">
+    <h3 class="text-lg font-semibold mb-2">Tags</h3>
+    
+    <div class="mb-4">
+      <%= form.label :tag_ids, "Select existing tags", class: "block mb-2" %>
+      <div class="flex flex-wrap gap-2">
+        <% @available_tags&.each do |tag| %>
+          <div class="flex items-center">
+            <%= form.check_box :tag_ids, { multiple: true, class: "mr-1" }, tag.id, nil %>
+            <%= form.label "tag_#{tag.id}", tag.name, class: "inline-flex items-center pl-3 pr-3 py-1 rounded-md text-sm font-medium", style: "background-color: #{tag.color}; color: #{text_color_for_background(tag.color)}" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <h4 class="font-medium mb-2">Create new tag</h4>
+      <div class="flex gap-4">
+        <div class="flex-1">
+          <%= form.fields_for :new_tag, Tag.new do |tag_form| %>
+            <%= tag_form.label :name, "Tag name", class: "block mb-1" %>
+            <%= tag_form.text_field :name, class: "w-full rounded border p-2" %>
+          <% end %>
+        </div>
+        <div>
+          <%= form.fields_for :new_tag, Tag.new do |tag_form| %>
+            <%= tag_form.label :color, "Color", class: "block mb-1" %>
+            <%= tag_form.color_field :color, class: "h-10 w-20 rounded border" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %> 

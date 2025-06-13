@@ -31,6 +31,8 @@
     <%= form.number_field :rating, step: :any, min: 0, max: 10 %>
   </div>
 
+  <%= render "tags", form: form %>
+
   <div class="pt-2">
     <%= form.submit %>
   </div>

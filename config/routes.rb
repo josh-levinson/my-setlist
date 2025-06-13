@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get "tags/index"
+  get "tags/show"
+  get "tags/new"
+  get "tags/create"
+  get "tags/edit"
+  get "tags/update"
+  get "tags/destroy"
   devise_for :users
   resources :jokes
+  resources :tags
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
